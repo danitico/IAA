@@ -22,8 +22,8 @@
 \usepackage{amssymb}
 \renewcommand{\baselinestretch}{1.2}
 \graphicspath{ {./images/} }
-\title{\Huge Servidor Web Tomcat}
-\author{José Manuel Cuevas Muñoz, Daniel Ranchal Parrado, Carlos Romeo Muñoz}
+\title{\Huge Práctica IAA}
+\author{Daniel Ranchal Parrado, Francisco Vera Herencia}
 \date{\parbox{\linewidth}{\centering%
   \today\endgraf\bigskip
   32 horas de trabajo}}
@@ -57,20 +57,26 @@
 % Contenido TRABAJO
 %
 
-\chapter{Definición del Sistema}
-\section{Objetivos y definición del sistema}
-El objetivo que se pretende es hacer pruebas exhaustivas, es decir, hacer un \
-benchmarking para calcular el rendimiento del servicio web Tomcat. Para hacer\
-este tipo de pruebas, se parte de la siguiente información. El sistema operativo\
-bajo el que se están haciendo las pruebas es CentOS, cuyo servidor está \
-alojado en Azure.
+\chapter{Práctica 1}
+\section{Iris}
+Los datos se caracterizan por 5 atributos, como se puede apreciar en la figura \ref{Fig1}.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{attributes.png}
+   \caption{atributos}
+   \label{Fig1}
+\end{figure}
 \newline
-Para la instalación de Tomcat, se ha utilizado el servicio de virtualización \
-docker para instalarlo de una manera sencilla. Para que el host, es decir, el \
-servidor pueda dar el servicio que provee el contenedor de docker, hay que ligar\
-el puerto del contenedor en el que está sirviendo Tomcat con el puerto que \
-nosotros queramos en el host, aunque los autores de este guión y trabajo hemos \
-elegido el 80, el puerto por excelencia para el servidor web.
+Se trata de una clasificación, ya que a partir de unos atributos se puede decir \
+que una instancia pertenece a una clase u a otra según los valores de estos atributos.
+\newline
+Respecto al rango de valores del atributo petalwidth (anchura del pétalo), vendrá \
+dado por los valores mínimo y máximo registrado, por lo que, según la figura \
+\ref{Fig2} este rango será [0'1,2'5]. En la misma imagen también se indica la media y su desviación típica, cuyos valores son  1'199 y 0'763, respectivamente.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{petalwidth.png}
+	\caption{anchura del pétalo}
+	\label{Fig2}
+\end{figure}
 
 \section{Servicios y sus posibles resultados}
 El servidor web Tomcat nos provee una gran cantidad de utilidades para \
