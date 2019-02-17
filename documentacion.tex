@@ -22,7 +22,7 @@
 \usepackage{amssymb}
 \renewcommand{\baselinestretch}{1.2}
 \graphicspath{ {./images/} }
-\title{\Huge Práctica IAA}
+\title{\Huge Práctica 1 IAA}
 \author{Daniel Ranchal Parrado, Francisco Vera Herencia}
 \date{\parbox{\linewidth}{\centering%
   \today\endgraf\bigskip
@@ -49,34 +49,42 @@
 \fancyhead[RO,LE]{\thepage} % Nmeros de pgina en las esquinas de los encabezados
 \setlength{\headheight}{14pt}
 \renewcommand{\sectionmark}[1]{\markright{{\thesection. #1}}} % Formato para la seccin: N.M. Nombre
-%%%
-%con esto creamos el ndice
+
 \tableofcontents
 \listoffigures
-%
-% Contenido TRABAJO
-%
 
-\chapter{Práctica 1}
-\section{Iris}
+\chapter{Primer ejercicio}
+\section{¿Cuántos atributos caracterizan los datos de esta base de datos?}
 Los datos se caracterizan por 5 atributos, como se puede apreciar en la figura \ref{Fig1}.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{attributes.png}
    \caption{atributos}
    \label{Fig1}
 \end{figure}
-\newline
+
+\section{¿Se trata de regresión o clasificación?}
 Se trata de una clasificación, ya que a partir de unos atributos se puede decir \
 que una instancia pertenece a una clase u a otra según los valores de estos atributos.
-\newline
+
+\section{¿Cuál es el rango de valores del atributo petalwidth?¿Y su media? ¿y su desviación típica?}
 Respecto al rango de valores del atributo petalwidth (anchura del pétalo), vendrá \
 dado por los valores mínimo y máximo registrado, por lo que, según la figura \
 \ref{Fig2} este rango será [0'1,2'5]. En la misma imagen también se indica la media y su desviación típica, cuyos valores son  1'199 y 0'763, respectivamente.
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{petalwidth.png}
-	\caption{anchura del pétalo}
+	\caption{Rango, media y desviación típica de los datos del atributo petalwidth}
 	\label{Fig2}
 \end{figure}
+
+\section{Determinar que atributo permite discriminar linealmente entre la clase iris-setosa y las otras dos clases}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Plot.png}
+	\caption{Gráfico en el que se diferencian las diferentes instancias según el ancho y la longitud del pétalo}
+	\label{Fig3}
+\end{figure}
+Como se puede observer en la figura \ref{Fig3}, se puede diferenciar con bastante\
+exactitud la clase iris-setosa y el resto de la clases. Para poder diferenciarlas de esta\
+manera se han utiizado los atributos petallenght y petalwidth.
 
 \section{Servicios y sus posibles resultados}
 El servidor web Tomcat nos provee una gran cantidad de utilidades para \
@@ -300,23 +308,23 @@ sacado durante las distintas ejecuciones de ab. Con gnuplot los ponemos de\
 manera visual, siendo la abscisa Y el porcentaje de uso de cpu y la abscisa\
 X el tiempo.
 
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{cpugrandes.jpg}
-   \caption{Uso de CPU con imágenes grandes}
-   \label{cpu1}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{cpugrandes.jpg}
+%    \caption{Uso de CPU con imágenes grandes}
+%    \label{cpu1}
+% \end{figure}
 
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{cpumedianos.jpg}
-   \caption{Uso de CPU con imágenes medianas}
-   \label{cpu2}
-\end{figure}
-
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{cpupequenos.jpg}
-   \caption{Uso de CPU con imágenes medianas}
-   \label{cpu3}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{cpumedianos.jpg}
+%    \caption{Uso de CPU con imágenes medianas}
+%    \label{cpu2}
+% \end{figure}
+%
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{cpupequenos.jpg}
+%    \caption{Uso de CPU con imágenes medianas}
+%    \label{cpu3}
+% \end{figure}
 Lo primero que se puede notar es que para una concurrencia mayor que uno, el\
 servidor utiliza la cpu casi al 100\%, siendo el único momento donde este uso\
 baja, cuando llega el momento de la prueba 2, donde no hay concurrencia y\
@@ -327,23 +335,23 @@ comprobar aquellos paquetes que no han sido recibidos, dando como resultado\
 que en ninguna de las pruebas ha habido paquetes fallidos. Para mostrar los\
 resultados, he vuelto a hacer uso de gnuplot, siendo la abscisa Y los kbs,\
 tanto transmitidos como recibidos, y la abscisa X el tiempo.
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{redgrandes.jpg}
-   \caption{Uso de Red con imágenes grandes}
-   \label{red1}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{redgrandes.jpg}
+%    \caption{Uso de Red con imágenes grandes}
+%    \label{red1}
+% \end{figure}
 
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{redmedianos.jpg}
-   \caption{Uso de Red con imágenes medianas}
-   \label{red2}
-\end{figure}
-
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{redpequenos.jpg}
-   \caption{Uso de Red con imágenes pequeñas}
-   \label{red3}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{redmedianos.jpg}
+%    \caption{Uso de Red con imágenes medianas}
+%    \label{red2}
+% \end{figure}
+%
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{redpequenos.jpg}
+%    \caption{Uso de Red con imágenes pequeñas}
+%    \label{red3}
+% \end{figure}
 Se puede notar como el ritmo de transferencia da muchas subidas y bajadas.\
 Aun así los datos son más o menos estables, siendo el punto en el que es más\
 baja la transferencia durante el tercer test, mientras que el punto en el que\
@@ -353,22 +361,22 @@ durante las ejecuciones de los benchmark, podemos sacar los datos de\
 utilización de disco. Para mostrar estos datos, se ha hecho uso del\
 excel, mostrando en ese caso la media por ejecución.
 
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{grafica2.jpg}
-   \caption{Uso de disco en las cinco ejecuciones con imágenes grandes}
-   \label{Fig2}
-\end{figure}
-
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{grafica3.jpg}
-\caption{Uso de disco en las cinco ejecuciones con imágenes medianas}   \label{Fig3}
-\end{figure}
-
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{grafica4.jpg}
-   \caption{Uso de disco en las cinco ejecuciones con imágenes pequeñas}
-   \label{Fig4}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{grafica2.jpg}
+%    \caption{Uso de disco en las cinco ejecuciones con imágenes grandes}
+%    \label{Fig2}
+% \end{figure}
+%
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{grafica3.jpg}
+% \caption{Uso de disco en las cinco ejecuciones con imágenes medianas}   \label{Fig3}
+% \end{figure}
+%
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{grafica4.jpg}
+%    \caption{Uso de disco en las cinco ejecuciones con imágenes pequeñas}
+%    \label{Fig4}
+% \end{figure}
 Se pueden ver como las transferencias son muy parecidas, tanto entre benchmark\
 como entre los distintos index.
 
@@ -392,14 +400,14 @@ varias veces con éxito. En cuanto a las peticiones por segundo, casi nunca \
 superan el cuarto de unidad, hecho que no hace más que corroborar las \
 afirmaciones anteriores. \newline
 
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{grafica1.jpg}
-   \caption{Transferencias por Segundo, peticiones por segundo \
-   y tiempo empleado en un grupo de peticiones concurrentes.}
-   \label{Fig1}
-\end{figure}
+% \begin{figure}[H]
+%    \includegraphics[width=\textwidth]{grafica1.jpg}
+%    \caption{Transferencias por Segundo, peticiones por segundo \
+%    y tiempo empleado en un grupo de peticiones concurrentes.}
+%    \label{Fig1}
+% \end{figure}
 
-Si contemplamos el gráfico \ref{Fig1}, nos damos cuenta de que el número de \
+Si contemplamos el gráfico pipo, nos damos cuenta de que el número de \
 peticiones por segundo, al ser un parámetro íntimamente ligado al hardware \
 sobre el que se esté ejecutando el banco de pruebas escogido, apenas varía, \
 puesto que la CPU solo es capaz de ejecutar un número determinado de ellas, \
@@ -413,19 +421,19 @@ lo que se aprecia esta mejora en el rendimiento, debido a que gran parte de los 
 datos que son necesarios para la ejecución de la prueba, ya están cargados en \
 la caché del servidor y son accesibles de manera mucho más rápida para la \
 siguiente ejecución. \newline \newline
-\indent Si contemplamos las gráficas \ref{Fig2}, \ref{Fig3} y \ref{Fig4}, no hay gran \
+% \indent Si contemplamos las gráficas \ref{Fig2}, \ref{Fig3} y \ref{Fig4}, no hay gran \
 diferencia entre ellas en cuanto al parámetro de medición, el número de \
 transferencias por segundo del disco del servidor. Para analizar las gráficas, \
 recordemos que estos datos han sido tomados con el monitor sar, mientras que ab \
 era ejecutado, tras ello, se ha realizado la media aritmética de los valores \
 del parámetro interesado que sar tomaba cada 10 segundos durante la ejecución \
 del test. Entonces, podemos ver como apenas hay diferencias significativas \
-entre las ejecuciones, por ejemplo, en la gráfica \ref{Fig2}, vemos como\
+% entre las ejecuciones, por ejemplo, en la gráfica \ref{Fig2}, vemos como\
 normalmente el test de menor concurrencia y menos repeticiones\
 (línea amarilla), tarda normalmente menos tiempo que el test con más \
 concurrencia y el doble de repeticiones (línea verde), aunque veamos \
 ejecuciones donde estas posiciones se inviertan, esto se debe más al margen de \
-error que a otra cosa. En cuanto a la gráfica \ref{Fig4}, la referida a los \
+% error que a otra cosa. En cuanto a la gráfica \ref{Fig4}, la referida a los \
 resultados del mosaico de imágenes pequeñas, observamos como la línea azul, \
 la correspondiente con el uso de https, lo cual es curioso debido a que en las \
 dos últimas pruebas se habían mantenido por debajo, sin embargo, no es de \
