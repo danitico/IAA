@@ -84,95 +84,53 @@ dado por los valores mínimo y máximo registrado, por lo que, según la figura 
 \end{figure}
 Como se puede observer en la figura \ref{Fig3}, se puede diferenciar con bastante\
 exactitud la clase iris-setosa y el resto de la clases. Para poder diferenciarlas de esta\
-manera se han utiizado los atributos petallenght y petalwidth.
+manera se puede utilizar los atributos petallenght o petalwidth.
 
-\section{Servicios y sus posibles resultados}
-El servidor web Tomcat nos provee una gran cantidad de utilidades para \
-aprovechar al máximo este mismo. La primera y la más importante es el despliegue\
-de una página web. Tomcat nos permite hacerlo de manera estática, es decir, \
-configurar la aplicación antes de activar este servicio o de manera dinámica, \
-que es lo más utilizado para servidores que están en producción.
-\newline
-Para poder realizar esto de una manera sencilla, Tomcat nos da una herramienta \
-llamada "Manager", que cómo se ha comentado antes, se pueden hacer despliegues \
-y eliminación (undeploy) de cualquier aplicación web además de darnos una lista \
-de las aplicaciones que ya están desplegadas.
-\newline
-Pero las utilidades de "Manager" no son sólo esas, este gestor nos da la opción \
-de poder ver las estadísticas de las sesiones de cualquier aplicación y el \
-estado del servidor. Otra de las funcionalidades que tiene, al igual que el \
-servidor httpd y apache2, es la posibilidad de trabajar con "Virtual Host".
-\newline
-Otra característica interesante que nos ofrece Tomcat es la gestión de los \
-usuario y los roles en las distintas aplicaciones web. Esto evita que tengamos \
-una tabla para cada aplicación web que se tenga. En temas de seguridad, Tomcat \
-nos permite la configuración de los certificados SSL/TLS para que nuestra \
-página tenga el protocolo https.
-\newline
-Para este experimento, se distinguirán los siguientes resultados:
+\section{¿Es posible separar linealmente la clase iris-versicolor de la clase iris-virginica?}
+Como se puede ver en la figura \ref{Fig3}, la clases iris-versicolo y la clase iris-virginica se pueden\
+separar linealmente utilizando los atributos petallenght y petalwidth.
 
-\begin{itemize}
-  \item \textbf{La carga correcta de las imágenes en un tiempo\
-  considerablemente bueno.}
-  \item \textbf{La carga correcta de las imágenes en un tiempo pésimo.}
-  \item \textbf{La carga parcial de las imágenes.}
-  \item \textbf{Fallo del servidor web. Ninguna imágen es servida.}
-\end{itemize}
+\section{¿Con qué dos atributos te quedarías para discriminar entre las tres clases del problema?}
+Las tres clases se pueden discriminar utilizando los atributos petallenght y petalwidth\
+tal y como se puede observar en la figura \ref{Fig3}.
+
+\section{¿Que diferencia hay entre instancias Distinct y \break Unique?}
+Distinct determina el número de diferentes valores que se pueden dar en un atributo,\
+mientras que Unique determina el número de instancias que tienen atributos con valores\
+únicos que otras instancias no tienen.
 
 
-\section{Métricas}
-Para poder medir la eficacia y la actuación del servidor web Tomcat se han \
-considerado los siguientes parámetros a examinar:
+\chapter{Segundo ejercicio}
 
-\begin{itemize}
-  \item \textbf{Peticiones por segundo}
-  \item \textbf{Tiempo por cada grupo de peticiones al mismo tiempo}
-  \item \textbf{Tiempo por cada petición}
-  \item \textbf{Uso de la CPU}
-  \item \textbf{E/S Disco}
-  \item \textbf{E/S Red}
-\end{itemize}
+\section{Aplique el filtro filters/unsupervised/attribute/NominalToBinary y describa como quedan ahora los atributos.}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ejercicio2.png}
+	\caption{Atributos antes de aplicar el filtro}
+	\label{Fig4}
+\end{figure}
 
-\pagebreak
-\section{Parámetros}
-Los parámetros que pueden afectar a la medición del rendimiento del servidor \
-web Tomcat son los siguientes:
+Después de aplicar el filtro NominalToBinary, habrá los siguiente atributos:
 
-\begin{itemize}
-  \item \textbf{La lejanía con el centro de datos}
-  \item \textbf{Los procesos que se ejecutan en segundo plano}
-  \item \textbf{Estado de nuestra conexión a Internet}
-  \item \textbf{Hardware empleado en el servidor}
-\end{itemize}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ejercicio2_1.png}
+	\caption{Atributos después de aplicar el filtro}
+	\label{Fig4}
+\end{figure}
 
-Para poder mitigar los efectos que producen estos parámetros,la prueba se \
-ejecutará varias veces y se harán los cáculos oportunos para representar de \
-una manera correcta las estadísticas.
-
-\chapter{Evaluación del Sistema}
-Tras el montaje del servidor en Tomcat usando CentOS, procedemos a evaluar el\
-sistema. En general hay muchas técnicas de evaluación posible. En nuestro caso\
-vamos a realizar pruebas con Apache benchmark en el lado del cliente, y a \
-monitorizar en el lado del servidor a través de sar y el monitor de Azure.\
-Tras realizar esto, sacaremos los datos, tanto del lado del cliente como del\
-servidor, y los analizaremos.
-
-\section{Técnicas de evaluación}
-Antes de proceder a describir los resultados, debemos mostrar cuáles fueron las\
-técnicas utilizadas para obtener los resultados del benchmark. Para realizar\
-estas pruebas, hemos hecho uso de Apache benchmark, debido a que es una de las \
-principales utilidades a la hora de realizar benchmarking a un servidor web.\
-Este permite mostrar pruebas con una concurrencia que nos sería difícil de\
-imitar, además de sacar datos muy interesantes, como el tiempo medio de una\
-petición y el número de peticiones del servidor.
-Para sacar los datos hemos utilizado el monitor sar, realizando un monitoreo\
-completo a la vez que sucedían las sucesivas pruebas de Apache benchmark. El\
-monitor sar nos permite sacar datos, tanto de la utilización de CPU, como de\
-red, además de otros muchos datos, los cuales no resaltaremos. Por último,\
-hemos utilizado datos que nos dá el propio Azure a la hora de medir el uso de disco.
+\section{¿Podría saber con antelación el número de atributos finales al aplicar este filtro?}
+Cada atributo tiene una serie de etiquetas. Como estos atributos son de tipo nominal,\
+cada etiqueta, al aplicar el filtro, se convertirán en un atributo.
+Por lo que si el primer atributo tiene dos etiquetas, esta se convertirá en dos.\
+El segundo atributo se convertirá en 5 atributos, mientras que el tercer atributo\
+se convertirá en dos atributos, y así en el resto de atributos.
+Al final habrá un número de 28 atributos después de aplicar el filtro, como se puede\
+apreciar en la figura \ref{Fig4}
 
 
-\section{Carga de trabajo}
+\chapter{Tercer ejercicio}
+\section{Particione su base de datos Criaturas tenebrosas \break usando filters/supervised/instance/StratifiedRemoveFolds}
+
+
 Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
 una concurrencia y una cantidad de peticiones distintas, además de que cada una \
 de estas se ha realizado en cinco ocasiones en tres index: uno con fotos \
