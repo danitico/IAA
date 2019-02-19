@@ -184,7 +184,19 @@ de ellos expresa de una manera concisa su significado.
 Como se puede ver en la figura \ref{Fig9}, se distiguen 7 atributos, de los cuales
 5 de ellos son numéricos y el resto son nominales. El atributo id no tiene en esta
 base de datos no tiene ningún significado, ya que solo enumera cada una de las instancias
-que hay.
+que hay. El segundo atributo cuyo nombre es bone\_lenght y el cuál es númerico,
+determina la longitud del hueso de la criatura, la cuál está normalizada entre 0
+y 1. El tercer atributo, de tipo numérico, que está denominado como rotting\_flesh
+representa el porcentaje de este en un rango de 0 a 1.
+El atributo hair\_lenght, de tipo numérico, representa la longitud del pelo, cuyos
+datos están normalizados entre 0 y 1.
+El atributo has\_soul es de tipo numérico y representa un porcentaje que está normalizado
+entre 0 y 1. El atribito color, como su propio nombre indica, determina el color
+de la criatura. Es un atributo nominal y puede tomar los valores whhite, black, clear,
+blue, green y blood.
+El último atributo, llamado type, determina el tipo de la criatura, es decir, nos indica
+a que clase pertenece. Es de tipo nominal y puede tomar los valores Ghost, Goblin y Ghoul.
+
 Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
 una concurrencia y una cantidad de peticiones distintas, además de que cada una \
 de estas se ha realizado en cinco ocasiones en tres index: uno con fotos \
