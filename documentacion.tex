@@ -20,6 +20,7 @@
 \usepackage{subfigure}
 \usepackage{mathrsfs}
 \usepackage{amssymb}
+\usepackage{hyperref}
 \renewcommand{\baselinestretch}{1.2}
 \graphicspath{ {./images/} }
 \title{\Huge Práctica 1 IAA}
@@ -44,7 +45,7 @@
 \renewcommand\tablename{Tabla}
 
 \pagenumbering{arabic} \fancyhf{} \pagestyle{fancy}
-\fancyhead[LO]{\rightmark} % En las pginas impares, parte izquierda del encabezado, aparecer el nombre de seccin
+\fancyhead[LO]{\leftmark} % En las pginas impares, parte izquierda del encabezado, aparecer el nombre de seccin
 \fancyhead[RE]{\leftmark} % En las pginas pares, parte derecha del encabezado, aparecer el nombre de captulo
 \fancyhead[RO,LE]{\thepage} % Nmeros de pgina en las esquinas de los encabezados
 \setlength{\headheight}{14pt}
@@ -114,7 +115,7 @@ Después de aplicar el filtro NominalToBinary, habrá los siguiente atributos:
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{ejercicio2_1.png}
 	\caption{Atributos después de aplicar el filtro}
-	\label{Fig4}
+	\label{Fig5}
 \end{figure}
 
 \section{¿Podría saber con antelación el número de atributos finales al aplicar este filtro?}
@@ -124,13 +125,66 @@ Por lo que si el primer atributo tiene dos etiquetas, esta se convertirá en dos
 El segundo atributo se convertirá en 5 atributos, mientras que el tercer atributo\
 se convertirá en dos atributos, y así en el resto de atributos.
 Al final habrá un número de 28 atributos después de aplicar el filtro, como se puede\
-apreciar en la figura \ref{Fig4}
+apreciar en la figura \ref{Fig5}
 
 
 \chapter{Tercer ejercicio}
 \section{Particione su base de datos Criaturas tenebrosas \break usando filters/supervised/instance/StratifiedRemoveFolds}
 
+reobiegrfjbirepgbebgjjkbsfddddsjbkgfjbgffgbj
 
+
+
+\chapter{Cuarto ejercicio}
+\section{Construya a partir del fichero dataset371.csv un \break fichero .arff para Weka. Ponga nombres de
+\break atributos descriptivos y use las herramientas que \break considere necesarias}
+Para poder construir un fichero .arff a partir de un .csv, primero hay que cargar
+este último en weka. Para ello, le daremos a la pestaña de open y buscaremos los
+archivos de esta extensión y escogeremos el archivo dataset371.csv, como se puede
+observar en la figura \ref{Fig6}.
+
+\begin{figure}[H]
+   \begin{center}
+	     \includegraphics[width=\textwidth]{ejercicio4_1.png}
+   \end{center}
+	\caption{Abriendo el archivo dataset371.csv}
+	\label{Fig6}
+\end{figure}
+
+Una vez que tenemos cargado el fichero .csv en weka, solo hace falta guardarlo con
+formato .arrf. Para ello solo hace falta irse a la pestaña Save, donde guadaremos
+los datos con la extensión .arff. Este proceso se puede ver en la figura \ref{Fig7}.
+
+\begin{figure}[H]
+   \begin{center}
+      \includegraphics[width=\textwidth]{ejercicio4_2.png}
+   \end{center}
+	\caption{Guardando el archivo en formato .arff}
+	\label{Fig7}
+\end{figure}
+
+Para poder editar el nombre de los distintos atributos, solamente hay que irse a la
+pestaña Edit, tal y como se puede ver en la figura \ref{Fig8}.
+En este caso no se va a modificar ningún nombre de los atributos ya que cada uno
+de ellos expresa de una manera concisa su significado.
+
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ejercicio4_3.png}
+	\caption{Cambiando el nombre de un atributo}
+	\label{Fig8}
+\end{figure}
+
+
+\section{Describa de forma concienzuda tanto los atributos como las clases de la base de datos.}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ejercicio4_4.png}
+	\caption{Atributos y su tipo de la base de datos dataset371}
+	\label{Fig9}
+\end{figure}
+Como se puede ver en la figura \ref{Fig9}, se distiguen 7 atributos, de los cuales
+5 de ellos son numéricos y el resto son nominales. El atributo id no tiene en esta
+base de datos no tiene ningún significado, ya que solo enumera cada una de las instancias
+que hay.
 Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
 una concurrencia y una cantidad de peticiones distintas, además de que cada una \
 de estas se ha realizado en cinco ocasiones en tres index: uno con fotos \
