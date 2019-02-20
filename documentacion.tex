@@ -25,9 +25,7 @@
 \graphicspath{ {./images/} }
 \title{\Huge Práctica 1 IAA}
 \author{Daniel Ranchal Parrado, Francisco Vera Herencia}
-\date{\parbox{\linewidth}{\centering%
-  \today\endgraf\bigskip
-  32 horas de trabajo}}
+\date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         %
 % Comenzamos el documento %
@@ -127,6 +125,13 @@ se convertirá en dos atributos, y así en el resto de atributos.
 Al final habrá un número de 28 atributos después de aplicar el filtro, como se puede\
 apreciar en la figura \ref{Fig5}
 
+\section{¿Que ha pasado con algunos atributos nominales?}
+Al utilizar el filtro NominalToBinary, los atributos nominales se han transformado
+en atributos binarios en el que cada cual representa a que clase pertenece. Si nos
+fijamos en los atributos que había anteriormente, reflejado en la figura \ref{Fig4}.
+Por ejemplo, el atributo age\_gt\_60, el cuál podía tomar como valor f y t se ha
+transformadoen dos variables, como se puede ver en la figura \ref{Fig5}.
+
 
 \chapter{Tercer ejercicio}
 \section{Particione su base de datos Criaturas tenebrosas \break usando filters/supervised/instance/StratifiedRemoveFolds}
@@ -196,6 +201,22 @@ de la criatura. Es un atributo nominal y puede tomar los valores whhite, black, 
 blue, green y blood.
 El último atributo, llamado type, determina el tipo de la criatura, es decir, nos indica
 a que clase pertenece. Es de tipo nominal y puede tomar los valores Ghost, Goblin y Ghoul.
+
+\section{Observe si hay atributos identificadores. Si no existen diga por qué.}
+No se distingue ningún atributo identificador en la base de datos ya que ninguno
+de ellos tiene valores para poder diferenciarse de manera única unos de otros. Se puede
+observar perfectamente que existe un atributo llamado Id, cuyo trabajo es identificador
+pero la única función que realizar es enumerar las distintas instancias.
+
+\section{¿Hay alguna relación que sea visualmente \break significativa?}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ejercicio4_5.png}
+	\caption{Gráficas de la base de datos dataset371}
+	\label{Fig10}
+\end{figure}
+Como se puede observar en la figura \ref{Fig10}, no se puede visualizar o reconocer
+algún hecho de una importancia significativa respecto las clases de las instancias
+y los diferentes atributos.
 
 Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
 una concurrencia y una cantidad de peticiones distintas, además de que cada una \
