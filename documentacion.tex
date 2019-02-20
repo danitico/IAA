@@ -218,6 +218,25 @@ Como se puede observar en la figura \ref{Fig10}, no se puede visualizar o recono
 algún hecho de una importancia significativa respecto las clases de las instancias
 y los diferentes atributos.
 
+\chapter{Quinto ejercicio}
+\section{Describa con sus propias palabras los siguientes \break filtros No Supervisados y describa cómo quedan los datos al aplicarlos.}
+\subsection{filters/unsupervised/attribute/Normalize}
+Este filtro normaliza los valores de un atributo entre 0 y 1. En este base de datos
+no se puede aplicar ya que todos los datos ya están normalizados en este rango, por
+lo que a continuación se va a crear una base de datos ficticia.
+
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ejercicio5_1.png}
+	\caption{Antes de aplicar el filtro Normalize}
+	\label{Fig11}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ejercicio5_2.png}
+	\caption{Después de aplicar el filtro Normalize}
+	\label{Fig12}
+\end{figure}
+
+
 Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
 una concurrencia y una cantidad de peticiones distintas, además de que cada una \
 de estas se ha realizado en cinco ocasiones en tres index: uno con fotos \
