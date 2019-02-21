@@ -117,28 +117,72 @@ Después de aplicar el filtro NominalToBinary, habrá los siguiente atributos:
 \end{figure}
 
 \section{¿Podría saber con antelación el número de atributos finales al aplicar este filtro?}
-Cada atributo tiene una serie de etiquetas. Como estos atributos son de tipo nominal,\
-cada etiqueta, al aplicar el filtro, se convertirán en un atributo.
-Por lo que si el primer atributo tiene dos etiquetas, esta se convertirá en dos.\
-El segundo atributo se convertirá en 5 atributos, mientras que el tercer atributo\
-se convertirá en dos atributos, y así en el resto de atributos.
-Al final habrá un número de 28 atributos después de aplicar el filtro, como se puede\
-apreciar en la figura \ref{Fig5}
+Cada atributo tiene una serie de etiquetas. Como estos atributos son de tipo nominal,
+cada etiqueta, al aplicar el filtro, se convertirán en un atributo en el caso que
+este puedo tomar 3 o más valores. Como se puede ver en la figura \ref{Fig5}, el
+atributo age\_gt\_60, airBoneGap, boneAbnormal y bser solo pueden tomar dos valores
+distintos, por lo que en el dataset este grupo atributos se comportarán como uno
+y los valores de estos serán 0 y 1. En el resto de atributos menos el último de ellos,
+estos atributos nominales pueden tomar más de tres valores, por lo que en el dataset
+se crearán tantos atributos como valores pueda tomar este.
 
 \section{¿Que ha pasado con algunos atributos nominales?}
-Al utilizar el filtro NominalToBinary, los atributos nominales se han transformado
-en atributos binarios en el que cada cual representa a que clase pertenece. Si nos
-fijamos en los atributos que había anteriormente, reflejado en la figura \ref{Fig4}.
-Por ejemplo, el atributo age\_gt\_60, el cuál podía tomar como valor f y t se ha
-transformadoen dos variables, como se puede ver en la figura \ref{Fig5}.
+Como se ha comentado en la pregunta anterior, aquellos atributos nominales que puedan
+tomar dos valores o menos no conllevan en crear un atributo por cada valor que puede tomar.
 
 
 \chapter{Tercer ejercicio}
-\section{Particione su base de datos Criaturas tenebrosas \break usando filters/supervised/instance/StratifiedRemoveFolds}
+\section{Divida el dataset en train y test mediante un 3-fold. Describa el proceso realizado.}
+Para poder realizar un 3-fold hay que seguir los siguientes pasos. El primero de ellos
+es determinar la configuración del filtro.
 
-reobiegrfjbirepgbebgjjkbsfddddsjbkgfjbgffgbj
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ejercicio3_1.png}
+	\caption{Configuración del filtro StratifiedRemoveFolds para obtener el set de generalización para 3-Fold}
+	\label{Fig13}
+\end{figure}
 
+Como se puede observar en la figura \ref{Fig13}, para obtener el conjunto de
+generalización, se especifica que escogeremos el fold número 1. Es decir, se escogerá
+un fold de tres. Como solo queremos un fold, se pone a false invertSelection. En el
+caso que en esa ultima configuración se ponga true, se cogerán todos los folds menos el
+primero. Estos dos folds serían el conjunto de entrenamiento. Este ultimo paso se puede
+ver en la figura \ref{Fig14}.
 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ejercicio3_2.png}
+	\caption{Configuración del filtro StratifiedRemoveFolds para obtener el set de entrenamiento para 3-Fold}
+	\label{Fig14}
+\end{figure}
+
+Para terminar de hacer un 3-fold. Habría que repetir estos pasos anteriores pero
+el fold que elegimos. Quedaría por coger el fold 2, guardaríamos el set de
+entrenamiento y de generalización y lo mismo con el último fold.
+
+% reobiegrfjbirepgbebgjjkbsfddddsjbkgfjbgffgbj
+% Para la primera parte, seleccionamos fold 1 y 3 numfolds -> test
+%                                           1   3 numfolds,invert ->training
+% Y así cambiando el numero de fold que queremos coger
+
+\section{Divida el dataset en train y test mediante un 4-holdOut con un75\% train y 25\% test.}
+Para poder realizar un 4-holdOut con los porcentajes propuestos hay que realizar la
+siguiente configuración del filtro, como se puede ver en la figura \ref{Fig15}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ejercicio3_3.png}
+	\caption{Configuración del filtro StratifiedRemoveFolds para obtener el set de generalización para 4-HoldOut}
+	\label{Fig15}
+\end{figure}
+
+Como nos piden que el conjunto de generalización sea un 25\%, debemos de repartir el conjunto
+de datos en 4 folds y coger uno de ellos para test. Como HoldOut coge Folds de los datos
+aleatoriamente, hay que fijar una semilla para generar numeros aleatorios, y por lo tanto
+coger Folds aleatorios. Para coger el resto de los folds para el conjunto de entrenamiento,
+pondremos la opción invertSelection a true. Hay que tener en cuenta que hay mantener la
+misma semilla en la misma iteración de HoldOut.
+
+En distintas iteraciones de HoldOut, hay que cambiar el número de la semilla aleatoria,
+ya que si no se tendrá todo el rato el algoritmo k-fold.
 
 \chapter{Cuarto ejercicio}
 \section{Construya a partir del fichero dataset371.csv un \break fichero .arff para Weka. Ponga nombres de
@@ -203,6 +247,7 @@ El último atributo, llamado type, determina el tipo de la criatura, es decir, n
 a que clase pertenece. Es de tipo nominal y puede tomar los valores Ghost, Goblin y Ghoul.
 
 \section{Observe si hay atributos identificadores. Si no existen diga por qué.}
+Se uede descurbir si hay o no hay con el fitlro remvoe useless
 No se distingue ningún atributo identificador en la base de datos ya que ninguno
 de ellos tiene valores para poder diferenciarse de manera única unos de otros. Se puede
 observar perfectamente que existe un atributo llamado Id, cuyo trabajo es identificador
