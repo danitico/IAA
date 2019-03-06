@@ -247,11 +247,11 @@ El último atributo, llamado type, determina el tipo de la criatura, es decir, n
 a que clase pertenece. Es de tipo nominal y puede tomar los valores Ghost, Goblin y Ghoul.
 
 \section{Observe si hay atributos identificadores. Si no existen diga por qué.}
-Se uede descurbir si hay o no hay con el fitlro remvoe useless
+Se puede descubrir si hay o no hay con el filtro remove useless.
 No se distingue ningún atributo identificador en la base de datos ya que ninguno
 de ellos tiene valores para poder diferenciarse de manera única unos de otros. Se puede
 observar perfectamente que existe un atributo llamado Id, cuyo trabajo es identificador
-pero la única función que realizar es enumerar las distintas instancias.
+pero la única función que realiza es enumerar las distintas instancias.
 
 \section{¿Hay alguna relación que sea visualmente \break significativa?}
 \begin{figure}[H]
@@ -281,215 +281,93 @@ lo que a continuación se va a crear una base de datos ficticia.
 	\label{Fig12}
 \end{figure}
 
-
 \subsection{filters/unsupervised/attribute/ReplaceMissingValues}
+Reemplaza todos los valores indefinidos por la moda en el caso de que
+sea un atributo nominal o la media aritmética si es un atributo numérico. Para comprobar su efecto creamos una nueva instancia con valores vacíos en el fichero Criaturas Tenebrosas como se aprecia en la figura \ref{Fig13}.
 
-Hemos hecho uso de tres cargas distintas de ab. Cada carga se ha realizado con \
-una concurrencia y una cantidad de peticiones distintas, además de que cada una \
-de estas se ha realizado en cinco ocasiones en tres index: uno con fotos \
-grandes, otro con fotos medianas y otro con fotos pequeñas, para comprobar si \
-existen diferencias entre las tres versiones. Las cargas son:
-\begin{itemize}
-  \item \textbf{ab -c 5 -n 20}: Pretende medir la capacidad  del programa a la \
-  hora de tener una concurrencia media y una cantidad de peticiones \
-  moderada/alta.
-  \item \textbf{ab -c 1 -n 10}: Pretende probar el servidor con una cantidad \
-  de peticiones más baja que la anterior prueba, pero sin concurrencia, para \
-  comprobar la diferencia entre una prueba con concurrencia o sin ella.
-  \item \textbf{ab -c 10 -t 40 -s 40}: Pretende probar el servidor con una \
-  concurrencia alta en un tiempo, dándonos, por ejemplo, el número de \
-  peticiones que puede realizar el servidor en x segundos.
-\end{itemize}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ReplaceMissingValues1.png}
+	\caption{Antes de aplicar el filtro ReplaceMissingValues}
+	\label{Fig13}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{ReplaceMissingValues2.png}
+	\caption{Después de aplicar el filtro ReplaceMissingValues}
+	\label{Fig14}
+\end{figure}
 
-\section{Diseño de Experimentos}
-Para realizar estos experimentos he creado un script que realiza en cinco\
-ocasiones las pruebas anteriormente nombradas para cada tamaño de imagen. A su \
-vez, el monitor sar está corriendo en el servidor y guardándolo en un fichero.\
-Para mostrar gráficamente los resultados de estas pruebas se hace uso de gnuplot.
+\subsection{filters/unsupervised/attributes/NominalToBinary}
+Transforma los valores nominales de un atributo en un vector cuyas coordenadas son binarias. En el fichero Criaturas Tenebrosas proporcionado, su efecto sería convertir el color de la criatura, que es una variable nominal en tantas variables binarias como valores distintos existan.
 
-\section{Análisis de los resultados}
-Tras realizar ab y a los tres index con las distintas cargas podemos proceder a\
-mostrar sus datos. Los primeros datos que nos resultarían interesantes serían\
-los del propio Apache benchmark.
-Los primeros datos que podemos mirar son los que nos da el propio apache\
-benchmark. Estos datos, obtenidos de la propia salida del comando “ab” son \
-los siguientes. De la primera prueba se extrae lo siguiente:
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{NominaltoBinary1.png}
+	\caption{Antes de aplicar el filtro NominaltoBinary}
+	\label{Fig15}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{NominaltoBinary2.png}
+	\caption{Después de aplicar el filtro NominaltoBinary}
+	\label{Fig16}
+\end{figure}
 
-\begin{center}
-\small
-\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c| }
- \hline
-  & \multicolumn{3}{|c}{Pequeños} & \multicolumn{3}{|c|}{Medianos} & \multicolumn{3}{|c|}{Grandes} \\
- \hline
- Ejecución & Pet/s & ms/Petición & Total(s) \
- & Pet/s & ms/Petición & Total(s) &\
- Pet/s & ms/Petición & Total(s) \\
- \hline
- 1 & 0.17 & 28875.345 & 115.501 & 0.16 & 31396.260 & 125.585 & 0.18 & 27800.182 & 111.201 \\
- \hline
- 2 & 0.17 & 29610.067 & 118.440 & 0.17 & 30268.598 & 121.074 & 0.18 & 27508.504 & 110.034 \\
- \hline
- 3 & 0.17 & 29360.455 & 117.442 & 0.17 & 30065.704 & 120.263 & 0.18 & 27296.960 & 109.185 \\
- \hline
- 4 & 0.17 & 29445.476 & 117.782 & 0.16 & 32097.834 & 128.391 & 0.18 & 27261.818 & 109.047 \\
- \hline
- 5 & 0.16 & 28917.908 & 115.672 & 0.17 & 29742.525 & 118.970 & 0.18 & 26643.844 & 106.575 \\
- \hline
- Media & 0.168 & 29241.8502 & 116.9674 & 0.166 & 30714.1842 & 122.8566 & 0.188 & 27302.2616 & 109.2084 \\
- \hline
-\end{tabular}
-\end{center}
+\subsection{filters/unsupervised/instance/RemoveDuplicates}
+Borra todas las instancias duplicadas dejando solo una de ellas, que ahora será única. Este ejemplo se puede observar en los datos del fichero iris.
 
-Es curioso el hecho de que la variación del tiempo no dependa tanto del tamaño \
-como de la capacidad de la red en ese momento. Se puede ver que aunque en los \
-valores medianos sube el tiempo, tanto por petición como el total, con respecto \
-a los valores pequeños; en los grandes esta sube debido a que la red no está \
-siendo utilizada. \newline
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{RemoveDuplicates1.png}
+	\caption{Antes de aplicar el filtro RemoveDuplicates}
+	\label{Fig17}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{RemoveDuplicates2.png}
+	\caption{Después de aplicar el filtro RemoveDuplicates}
+	\label{Fig18}
+\end{figure}
 
-Tras la segunda prueba nos da los siguientes resultados:
+\subsection{filters/unsupervised/instance/Resample}
+Obtiene un subconjunto del conjunto inicial de forma aleatoria.
+Para comprobar el efecto de este filtro usaremos el conjunto iris. Como se puede apreciar en \ref{Fig19}, nos encontramos con la base de datos en su estado inicial y nos disponemos a aplicar el filtro para reducir la muestra a un 90\% aleatorio sin reemplazo. En \ref{Fig20} se observan los datos del subconjunto resultante.
 
-\begin{center}
-\small
-\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c| }
- \hline
-  & \multicolumn{3}{|c}{Pequeños} & \multicolumn{3}{|c|}{Medianos} & \multicolumn{3}{|c|}{Grandes} \\
- \hline
- Ejecución & Pet/s & ms/Petición & Total(s) \
- & Pet/s & ms/Petición & Total(s) &\
- Pet/s & ms/Petición & Total(s) \\
- \hline
- 1 & 0.17 & 5897.409 & 58.974 & 0.16 & 6207.914 & 62.079 & 0.17 & 5732.952 & 57.330 \\
- \hline
- 2 & 0.17 & 5952.298 & 59.523 & 0.16 & 6166.424 & 61.664 & 0.17 & 5792.583 & 57.926 \\
- \hline
- 3 & 0.17 & 5968.026 & 59.680 & 0.16 & 6159.262 & 61.593 & 0.17 & 5720.497 & 57.205 \\
- \hline
- 4 & 0.16 & 6904.65 & 60.946 & 0.16 & 6291.626 & 62.916 & 0.17 & 5761.08 & 57.611 \\
- \hline
- 5 & 0.17 & 6033.483 & 60.335 & 0.16 & 6239.134 & 62.391 & 0.17 & 5817.991 & 58.180 \\
- \hline
- Media & 0.168 & 5989.1642 & 59.8916 & 0.16 & 6212.8708 & 62.1286 & 0.17 & 5765.0206 & 57.6504 \\
- \hline
-\end{tabular}
-\end{center}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{Resample1.png}
+	\caption{Antes de aplicar el filtro Resample}
+	\label{Fig19}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{Resample2.png}
+	\caption{Después de aplicar el filtro Resample}
+	\label{Fig20}
+\end{figure}
 
-Se puede comprobar que el tiempo de respuesta en este caso, sin ninguna\break\
-concurrencia, es sustancialmente menor al tiempo con concurrencia\
-(de media, unas 4.853981 veces menor), debido a que con más de dos peticiones a\
-la vez el servidor se satura debido a su baja capacidad de cómputo. \newline
+\subsection{filters/unsupervised/attribute/Remove}
+Borra un conjunto de atributos del fichero de datos. Dicho conjunto se debe especificar explícitamente como argumento del filtro, indicando los números de los atributos entre comas o rangos de atributos entre guiones. En el ejemplo de las figuras se puede apreciar como se consiguen borrar los atributos 2, 3 y 4.
 
-Por último, en el último test, siendo los dos únicos datos que nos interesan\
-la media de peticiones que son capaces de resolver en ese tiempo y el tiempo\
-de respuesta por petición.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{remove1.png}
+	\caption{Antes de aplicar el filtro Remove}
+	\label{Fig21}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{remove2.png}
+	\caption{Después de aplicar el filtro Remove}
+	\label{Fig22}
+\end{figure}
 
-\begin{center}
-\small
-\begin{tabular}{ |c|c|c|c|c|c|c| }
- \hline
-  & \multicolumn{2}{|c}{Pequeños} & \multicolumn{2}{|c|}{Medianos} & \multicolumn{2}{c|}{Grandes} \\
- \hline
- Ejecución & Pet. hechas & ms/Petición \
- & Pet. hechas & ms/Petición &\
- Pet. hechas & ms/Petición \\
- \hline
- 1 & 4 & 88795.308 & 4 & 110129.467 & 2 & 218473.645 \\
- \hline
- 2 & 3 & 107076.853 & 3 & 130129.422 & 3 & 157925.583 \\
- \hline
- 3 & 4 & 86692.71 & 4 & 108129.467 & 4 & 110129.562 \\
- \hline
- 4 & 5 & 66522.661 & 2 & 160291.622 & 3 & 142129.465 \\
- \hline
- 5 & 3 & 108506.811 & 4 & 110129.467 & 4 & 100345.234 \\
- \hline
- Media & 3.8 & 75914.1808 & 3.4 & 123761.889 & 3.2 & 145800.6978 \\
- \hline
-\end{tabular}
-\end{center}
+\subsection{filters/unsupervised/attribute/RemoveUseless}
+Elimina atributos que oscilan menos que un nivel de variación. Es útil para
+eliminar atributos constantes o con un rango muy pequeño. Como parámetro toma el máximo porcentaje de variación permitido, si este valor obtenido es mayor que la variación
+obtenida la muestra es eliminada.
 
-Aqui si se puede notar una clara diferencia entre la performance entre la\
-versión pequeña, la mediana y la grande, así como la del tiempo de respuesta\
-entre las distintas ejecuciones. La principal diferencia de esta prueba con\
-respecto a las otras dos es que, además de ser de tiempo, también tiene una\
-concurrencia alta, sobre todo teniendo en cuenta, como veremos posteriormente,\
-que la cpu a partir de dos concurrencias llega casi al 100\% de utilización.
-
-A continuación procedemos a sacar con sar -u los datos de la CPU que se han\
-sacado durante las distintas ejecuciones de ab. Con gnuplot los ponemos de\
-manera visual, siendo la abscisa Y el porcentaje de uso de cpu y la abscisa\
-X el tiempo.
-
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{cpugrandes.jpg}
-%    \caption{Uso de CPU con imágenes grandes}
-%    \label{cpu1}
-% \end{figure}
-
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{cpumedianos.jpg}
-%    \caption{Uso de CPU con imágenes medianas}
-%    \label{cpu2}
-% \end{figure}
-%
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{cpupequenos.jpg}
-%    \caption{Uso de CPU con imágenes medianas}
-%    \label{cpu3}
-% \end{figure}
-Lo primero que se puede notar es que para una concurrencia mayor que uno, el\
-servidor utiliza la cpu casi al 100\%, siendo el único momento donde este uso\
-baja, cuando llega el momento de la prueba 2, donde no hay concurrencia y\
-solo utiliza un 80\% del disco. \newline
-En cuanto a las pruebas de red, he utilizado sar -n DEV para comprobar todos\
-los paquetes que se han enviado. Además de esto, he usado sar -n EDEV para\
-comprobar aquellos paquetes que no han sido recibidos, dando como resultado\
-que en ninguna de las pruebas ha habido paquetes fallidos. Para mostrar los\
-resultados, he vuelto a hacer uso de gnuplot, siendo la abscisa Y los kbs,\
-tanto transmitidos como recibidos, y la abscisa X el tiempo.
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{redgrandes.jpg}
-%    \caption{Uso de Red con imágenes grandes}
-%    \label{red1}
-% \end{figure}
-
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{redmedianos.jpg}
-%    \caption{Uso de Red con imágenes medianas}
-%    \label{red2}
-% \end{figure}
-%
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{redpequenos.jpg}
-%    \caption{Uso de Red con imágenes pequeñas}
-%    \label{red3}
-% \end{figure}
-Se puede notar como el ritmo de transferencia da muchas subidas y bajadas.\
-Aun así los datos son más o menos estables, siendo el punto en el que es más\
-baja la transferencia durante el tercer test, mientras que el punto en el que\
-alcanza sus picos es en el segundo test. \newline
-Por último, haciendo uso del monitor de azure y sacando media de los datos\
-durante las ejecuciones de los benchmark, podemos sacar los datos de\
-utilización de disco. Para mostrar estos datos, se ha hecho uso del\
-excel, mostrando en ese caso la media por ejecución.
-
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{grafica2.jpg}
-%    \caption{Uso de disco en las cinco ejecuciones con imágenes grandes}
-%    \label{Fig2}
-% \end{figure}
-%
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{grafica3.jpg}
-% \caption{Uso de disco en las cinco ejecuciones con imágenes medianas}   \label{Fig3}
-% \end{figure}
-%
-% \begin{figure}[H]
-%    \includegraphics[width=\textwidth]{grafica4.jpg}
-%    \caption{Uso de disco en las cinco ejecuciones con imágenes pequeñas}
-%    \label{Fig4}
-% \end{figure}
-Se pueden ver como las transferencias son muy parecidas, tanto entre benchmark\
-como entre los distintos index.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{RemoveUseless1.png}
+	\caption{Antes de aplicar el filtro RemoveUseless}
+	\label{Fig23}
+\end{figure}
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{RemoveUseless2.png}
+	\caption{Después de aplicar el filtro RemoveUseless}
+	\label{Fig24}
+\end{figure}
 
 \chapter{Conclusiones y discusión}
 
