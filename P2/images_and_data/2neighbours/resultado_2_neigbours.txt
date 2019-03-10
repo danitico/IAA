@@ -1,0 +1,54 @@
+=== Run information ===
+
+Scheme:weka.classifiers.lazy.IBk -K 2 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+Relation:     dataset371-weka.filters.unsupervised.attribute.RemoveUseless-M99.0-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NominalToBinary-A-R5-weka.filters.unsupervised.attribute.ReplaceMissingValues
+Instances:    371
+Attributes:   11
+              bone_length
+              rotting_flesh
+              hair_length
+              has_soul
+              color=clear
+              color=green
+              color=black
+              color=white
+              color=blue
+              color=blood
+              type
+Test mode:3-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+IB1 instance-based classifier
+using 2 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         235               63.3423 %
+Incorrectly Classified Instances       136               36.6577 %
+Kappa statistic                          0.4465
+Mean absolute error                      0.2474
+Root mean squared error                  0.4178
+Relative absolute error                 55.7041 %
+Root relative squared error             88.6698 %
+Total Number of Instances              371     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.853     0.285      0.615     0.853     0.714      0.815    Ghoul
+                 0.464     0.24       0.496     0.464     0.479      0.668    Goblin
+                 0.573     0.031      0.893     0.573     0.698      0.901    Ghost
+Weighted Avg.    0.633     0.19       0.662     0.633     0.63       0.792
+
+=== Confusion Matrix ===
+
+   a   b   c   <-- classified as
+ 110  19   0 |   a = Ghoul
+  59  58   8 |   b = Goblin
+  10  40  67 |   c = Ghost
+
