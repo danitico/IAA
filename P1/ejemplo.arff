@@ -2,10 +2,15 @@
 
 @attribute edad numeric
 @attribute altura numeric
+@attribute sexo {hombre, mujer}
 @attribute class {alto,bajo}
 
 @data
-20,150,bajo
-30,140,bajo
-16,160,alto
-25,210,alto
+16,170,hombre,alto
+20,187,hombre,alto
+52,165,mujer,bajo
+20,150,hombre,bajo
+30,170,mujer,alto
+12,160,hombre,alto
+80,160,hombre,bajo
+65,150,mujer,bajo
