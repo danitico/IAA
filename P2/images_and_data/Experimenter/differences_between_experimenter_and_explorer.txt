@@ -1,0 +1,5 @@
+The Experimenter operates differently from the Explorer.
+The Explorer sums evaluation metrics over the folds of the cross validation - e.g. percent correct is computed by summing all 
+the correctly classified instances over the test folds and then dividing by the total number of instances. 
+The Experimenter, on the other hand, computes averages over the folds. 
+Furthermore, the default in the Experimenter is to run 10 repetitions of 10-fold cross-validation (so 100 folds are averaged over).
