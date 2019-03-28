@@ -1,0 +1,2 @@
+jerarquico en weka le pones el numero de clusteres y buscara un punto de
+corte en el endograma para que se obtengan dos endogramas

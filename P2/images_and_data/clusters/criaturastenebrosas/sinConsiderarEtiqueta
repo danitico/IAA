@@ -1,0 +1,59 @@
+=== Run information ===
+
+Scheme:weka.clusterers.SimpleKMeans -N 3 -A "weka.core.EuclideanDistance -R first-last" -I 500 -S 10
+Relation:     dataset371-weka.filters.unsupervised.attribute.RemoveUseless-M99.0-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NominalToBinary-A-R5-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    371
+Attributes:   11
+              bone_length
+              rotting_flesh
+              hair_length
+              has_soul
+              color=clear
+              color=green
+              color=black
+              color=white
+              color=blue
+              color=blood
+Ignored:
+              type
+Test mode:evaluate on training data
+
+=== Model and evaluation on training set ===
+
+
+kMeans
+======
+
+Number of iterations: 4
+Within cluster sum of squared errors: 156.2052362317789
+Missing values globally replaced with mean/mode
+
+Cluster centroids:
+                             Cluster#
+Attribute        Full Data          0          1          2
+                     (371)      (137)       (60)      (174)
+===========================================================
+bone_length         0.4936     0.4867     0.5258     0.4879
+rotting_flesh       0.4914     0.4975     0.5332     0.4721
+hair_length         0.4559     0.4449     0.4221     0.4762
+has_soul            0.4987      0.492     0.5073     0.5011
+color=clear         0.3235          0          0     0.6897
+color=green         0.1132          0          0     0.2414
+color=black         0.1105          0     0.6833          0
+color=white         0.3693          1          0          0
+color=blue          0.0512          0     0.3167          0
+color=blood         0.0323          0          0      0.069
+
+
+
+
+Time taken to build model (full training data) : 0.04 seconds
+
+=== Model and evaluation on training set ===
+
+Clustered Instances
+
+0      137 ( 37%)
+1       60 ( 16%)
+2      174 ( 47%)
+
