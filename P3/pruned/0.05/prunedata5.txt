@@ -1,0 +1,88 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.05 -M 7
+Relation:     dataset371-weka.filters.unsupervised.attribute.RemoveUseless-M99.0-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NominalToBinary-A-R5-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    371
+Attributes:   11
+              bone_length
+              rotting_flesh
+              hair_length
+              has_soul
+              color=clear
+              color=green
+              color=black
+              color=white
+              color=blue
+              color=blood
+              type
+Test mode:    split 75.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+hair_length <= 0.430738
+|   has_soul <= 0.556061
+|   |   rotting_flesh <= 0.537129
+|   |   |   has_soul <= 0.313185: Ghost (21.0/4.0)
+|   |   |   has_soul > 0.313185
+|   |   |   |   rotting_flesh <= 0.428966: Goblin (17.0/2.0)
+|   |   |   |   rotting_flesh > 0.428966
+|   |   |   |   |   hair_length <= 0.366177: Ghost (13.0/2.0)
+|   |   |   |   |   hair_length > 0.366177: Goblin (12.0/2.0)
+|   |   rotting_flesh > 0.537129: Ghost (68.0/4.0)
+|   has_soul > 0.556061
+|   |   has_soul <= 0.806811
+|   |   |   rotting_flesh <= 0.485032: Ghoul (15.0/7.0)
+|   |   |   rotting_flesh > 0.485032: Goblin (10.0/5.0)
+|   |   has_soul > 0.806811: Ghoul (8.0)
+hair_length > 0.430738
+|   hair_length <= 0.625454
+|   |   has_soul <= 0.33318: Ghost (15.0/5.0)
+|   |   has_soul > 0.33318
+|   |   |   has_soul <= 0.744412
+|   |   |   |   bone_length <= 0.525286: Goblin (52.0/10.0)
+|   |   |   |   bone_length > 0.525286
+|   |   |   |   |   rotting_flesh <= 0.333047: Goblin (8.0)
+|   |   |   |   |   rotting_flesh > 0.333047: Ghoul (47.0/18.0)
+|   |   |   has_soul > 0.744412: Ghoul (11.0/1.0)
+|   hair_length > 0.625454: Ghoul (74.0/10.0)
+
+Number of Leaves  : 	14
+
+Size of the tree : 	27
+
+
+Time taken to build model: 0.01 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on test split: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          68               73.1183 %
+Incorrectly Classified Instances        25               26.8817 %
+Kappa statistic                          0.5959
+Mean absolute error                      0.2366
+Root mean squared error                  0.4122
+Relative absolute error                 53.2324 %
+Root relative squared error             87.3764 %
+Total Number of Instances               93     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.800    0.143    0.727      0.800    0.762      0.642    0.820     0.689     Ghoul
+                 0.647    0.186    0.667      0.647    0.657      0.464    0.708     0.539     Goblin
+                 0.759    0.078    0.815      0.759    0.786      0.694    0.846     0.708     Ghost
+Weighted Avg.    0.731    0.139    0.732      0.731    0.731      0.593    0.787     0.640     
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 24  4  2 |  a = Ghoul
+  9 22  3 |  b = Goblin
+  0  7 22 |  c = Ghost
+
