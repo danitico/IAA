@@ -1,0 +1,142 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -U -M 3
+Relation:     dataset371-weka.filters.unsupervised.attribute.RemoveUseless-M99.0-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NominalToBinary-A-R5-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0
+Instances:    371
+Attributes:   11
+              bone_length
+              rotting_flesh
+              hair_length
+              has_soul
+              color=clear
+              color=green
+              color=black
+              color=white
+              color=blue
+              color=blood
+              type
+Test mode:    split 75.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+J48 unpruned tree
+------------------
+
+hair_length <= 0.430738
+|   has_soul <= 0.556061
+|   |   rotting_flesh <= 0.537129
+|   |   |   has_soul <= 0.313185: Ghost (21.0/4.0)
+|   |   |   has_soul > 0.313185
+|   |   |   |   bone_length <= 0.226556: Ghost (5.0)
+|   |   |   |   bone_length > 0.226556
+|   |   |   |   |   color=black <= 0
+|   |   |   |   |   |   rotting_flesh <= 0.428966: Goblin (14.0/1.0)
+|   |   |   |   |   |   rotting_flesh > 0.428966
+|   |   |   |   |   |   |   color=clear <= 0
+|   |   |   |   |   |   |   |   hair_length <= 0.326632: Ghost (6.0)
+|   |   |   |   |   |   |   |   hair_length > 0.326632: Goblin (5.0/1.0)
+|   |   |   |   |   |   |   color=clear > 0: Goblin (5.0/1.0)
+|   |   |   |   |   color=black > 0: Goblin (7.0/1.0)
+|   |   rotting_flesh > 0.537129
+|   |   |   bone_length <= 0.60948: Ghost (62.0/1.0)
+|   |   |   bone_length > 0.60948
+|   |   |   |   rotting_flesh <= 0.640456: Ghost (3.0/1.0)
+|   |   |   |   rotting_flesh > 0.640456: Goblin (3.0/1.0)
+|   has_soul > 0.556061
+|   |   color=blue <= 0
+|   |   |   has_soul <= 0.806811
+|   |   |   |   color=black <= 0
+|   |   |   |   |   rotting_flesh <= 0.485032
+|   |   |   |   |   |   bone_length <= 0.369605: Goblin (5.0/2.0)
+|   |   |   |   |   |   bone_length > 0.369605: Ghoul (7.0/1.0)
+|   |   |   |   |   rotting_flesh > 0.485032
+|   |   |   |   |   |   rotting_flesh <= 0.557016: Goblin (3.0)
+|   |   |   |   |   |   rotting_flesh > 0.557016: Ghost (5.0/2.0)
+|   |   |   |   color=black > 0: Ghost (3.0/1.0)
+|   |   |   has_soul > 0.806811: Ghoul (7.0)
+|   |   color=blue > 0: Ghoul (3.0)
+hair_length > 0.430738
+|   hair_length <= 0.625454
+|   |   has_soul <= 0.33318
+|   |   |   color=black <= 0
+|   |   |   |   color=clear <= 0: Ghost (4.0/1.0)
+|   |   |   |   color=clear > 0
+|   |   |   |   |   rotting_flesh <= 0.433877: Goblin (3.0/1.0)
+|   |   |   |   |   rotting_flesh > 0.433877: Ghost (4.0)
+|   |   |   color=black > 0: Goblin (4.0/2.0)
+|   |   has_soul > 0.33318
+|   |   |   has_soul <= 0.744412
+|   |   |   |   bone_length <= 0.525286
+|   |   |   |   |   color=green <= 0
+|   |   |   |   |   |   rotting_flesh <= 0.650191
+|   |   |   |   |   |   |   color=clear <= 0
+|   |   |   |   |   |   |   |   color=white <= 0: Goblin (6.0/1.0)
+|   |   |   |   |   |   |   |   color=white > 0
+|   |   |   |   |   |   |   |   |   bone_length <= 0.463817: Goblin (11.0)
+|   |   |   |   |   |   |   |   |   bone_length > 0.463817
+|   |   |   |   |   |   |   |   |   |   bone_length <= 0.494684: Ghoul (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   bone_length > 0.494684: Goblin (3.0/1.0)
+|   |   |   |   |   |   |   color=clear > 0: Goblin (16.0/1.0)
+|   |   |   |   |   |   rotting_flesh > 0.650191
+|   |   |   |   |   |   |   bone_length <= 0.369605: Ghoul (3.0/1.0)
+|   |   |   |   |   |   |   bone_length > 0.369605: Goblin (5.0/2.0)
+|   |   |   |   |   color=green > 0: Goblin (5.0/1.0)
+|   |   |   |   bone_length > 0.525286
+|   |   |   |   |   rotting_flesh <= 0.333047: Goblin (8.0)
+|   |   |   |   |   rotting_flesh > 0.333047
+|   |   |   |   |   |   color=green <= 0
+|   |   |   |   |   |   |   color=blue <= 0
+|   |   |   |   |   |   |   |   color=black <= 0
+|   |   |   |   |   |   |   |   |   color=clear <= 0
+|   |   |   |   |   |   |   |   |   |   bone_length <= 0.706328
+|   |   |   |   |   |   |   |   |   |   |   has_soul <= 0.535249: Ghoul (3.0)
+|   |   |   |   |   |   |   |   |   |   |   has_soul > 0.535249: Goblin (3.0)
+|   |   |   |   |   |   |   |   |   |   bone_length > 0.706328: Ghoul (4.0)
+|   |   |   |   |   |   |   |   |   color=clear > 0: Ghoul (22.0/7.0)
+|   |   |   |   |   |   |   |   color=black > 0
+|   |   |   |   |   |   |   |   |   rotting_flesh <= 0.55082: Ghoul (3.0)
+|   |   |   |   |   |   |   |   |   rotting_flesh > 0.55082: Goblin (4.0/1.0)
+|   |   |   |   |   |   |   color=blue > 0: Goblin (3.0/1.0)
+|   |   |   |   |   |   color=green > 0: Ghoul (5.0/3.0)
+|   |   |   has_soul > 0.744412: Ghoul (11.0/1.0)
+|   hair_length > 0.625454
+|   |   has_soul <= 0.383171: Goblin (5.0/1.0)
+|   |   has_soul > 0.383171: Ghoul (69.0/6.0)
+
+Number of Leaves  : 	41
+
+Size of the tree : 	81
+
+
+Time taken to build model: 0.01 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on test split: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          62               66.6667 %
+Incorrectly Classified Instances        31               33.3333 %
+Kappa statistic                          0.4993
+Mean absolute error                      0.23  
+Root mean squared error                  0.4477
+Relative absolute error                 51.7342 %
+Root relative squared error             94.894  %
+Total Number of Instances               93     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.667    0.143    0.690      0.667    0.678      0.529    0.817     0.644     Ghoul
+                 0.559    0.237    0.576      0.559    0.567      0.324    0.640     0.493     Goblin
+                 0.793    0.125    0.742      0.793    0.767      0.657    0.829     0.646     Ghost
+Weighted Avg.    0.667    0.172    0.664      0.667    0.665      0.494    0.756     0.589     
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 20  8  2 |  a = Ghoul
+  9 19  6 |  b = Goblin
+  0  6 23 |  c = Ghost
+
