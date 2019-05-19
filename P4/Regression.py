@@ -17,11 +17,6 @@ def myModel():
 
     return model
 
-
-model1 = myModel()
-model2 = myModel()
-model3 = myModel()
-
 def getMissingDataAttr1():
     data, label = getData(0)
 
@@ -55,7 +50,10 @@ def getMissingDataAttr3():
     return model3.predict(getDataofMissingOnes(2))
 
 
-def replacingMissingValues(data):
+def replacingMissingValues():
+    myArff = arff.load(open('competition-iaa-2018-2019/train.arff', 'r'))
+    data = np.array(myArff['data'])
+
     positions1 = getPositionMissingOnes(0)
     data1 = getMissingDataAttr1()
 
@@ -80,10 +78,13 @@ def replacingMissingValues(data):
         data[i][10] = data3[j]
         j += 1
 
-    return data
+    myArff['data'] = data
+
+    f = open('pruea.arff', 'w')
+    arff.dump(myArff, f)
 
 
-def replacingMissingValuesTest(data):
+def replacingMissingValuesTest():
     myArff = arff.load(open('competition-iaa-2018-2019/test.arff', 'r'))
     data = np.array(myArff['data'])
 
@@ -147,4 +148,14 @@ def replacingMissingValuesTest(data):
         data[i][10] = predicted3[j]
         j += 1
 
-    return data
+    myArff['data'] = data
+
+    f = open('test.arff', 'w')
+    arff.dump(myArff, f)
+
+
+model1 = myModel()
+model2 = myModel()
+model3 = myModel()
+replacingMissingValues()
+replacingMissingValuesTest()
